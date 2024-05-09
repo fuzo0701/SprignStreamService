@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: SpringStreamService
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+server:
+  port: 8081
+
+tus:
+  data:
+    path: "video/tus"
+    expiration: 60000
+  save:
+    path: "video"
+
