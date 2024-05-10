@@ -2,6 +2,9 @@ package kr.springstreamservice.tus.service.imple;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kr.springstreamservice.manager.FFmpegManager;
+import kr.springstreamservice.tus.extractor.DurationExtractor;
+import kr.springstreamservice.tus.extractor.ThumbnailExtractor;
 import kr.springstreamservice.tus.service.TusService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +27,7 @@ import java.util.UUID;
 public class TusServiceImpl implements TusService {
 
     private final TusFileUploadService tusFileUploadService;
+    private final FFmpegManager fFmpegManager;
 
     @Value("${tus.save.path}")
     private String savePath;
@@ -61,6 +65,21 @@ public class TusServiceImpl implements TusService {
 
         File file = new File(uploadedPath,vodName);
         FileUtils.copyInputStreamToFile(inputStream, file);
+
+        // extractor 추가된 내용
+        // 썸네일 추출
+        //ThumbnailExtractor.extract(file);
+        // 영상 길이 추출
+        //DurationExtractor.extract(file);
+
+
+        // ffmpeg 추가
+        log.debug("file.getAbsolutePath() : {}", file.getAbsolutePath());
+        // 썸네일 추출
+        fFmpegManager.getThumbnail(file.getAbsolutePath());
+        // 영상 길이 추출
+        fFmpegManager.getDuration(file.getAbsolutePath());
+
     }
 
     // 파일 이름은 랜덤 UUID 사용

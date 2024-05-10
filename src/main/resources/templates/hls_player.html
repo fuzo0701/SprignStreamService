@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Uploaded vod</title>
+
+    <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+</head>
+<body>
+<!--<video id="my-video" class="video-js" controls preload="auto" width="720" height="480">-->
+<!--    <source src="http://localhost:8081/hls/ce2db293f0944fbeac3240cbb1655ddd/master.m3u8" type="application/x-mpegURL">-->
+<!--</video>-->
+<video id="my-video2" class="video-js" controls preload="auto" width="720" height="480">
+    <source src="http://localhost:8081/v2/hls/ce2db293f0944fbeac3240cbb1655ddd/master.m3u8" type="application/x-mpegURL">
+</video>
+video3
+<video id="my-video3" class="video-js" controls preload="auto" width="720" height="480">
+    <source src="http://localhost:8081/v2/hls/ce2db293f0944fbeac3240cbb1655ddd/1080/playlist.m3u8" type="application/x-mpegURL">
+</video>
+<script>
+    var player = videojs('my-video');
+    player.play();
+    var player2 = videojs('my-video2');
+    player2.play();
+    var player3 = videojs('my-video3');
+    player3.play();
+</script>
+</body>
+</html>
